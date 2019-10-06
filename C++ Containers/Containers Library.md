@@ -246,7 +246,8 @@ If you are going to change the contents of vector in the function, just omit the
 ```c++
 void modify_vector(vector< int >& v) 
 { 
-  // Correctv[0]++;
+  // Correct
+  v[0]++;
 }
 ```
 

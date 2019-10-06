@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 
-
 using namespace std;
 
 int main ()
@@ -130,14 +129,86 @@ int main ()
   */
   cout <<"\nVECTOR::shrink_to_fit" << endl;
 
-  std::cout << "size: " << (int) myvector.size() << '\n';
-  std::cout << "capacity: " << (int) myvector.capacity() << '\n';
+  cout << "size: " << (int) myvector.size() << '\n';
+  cout << "capacity: " << (int) myvector.capacity() << '\n';
   myvector.shrink_to_fit();
   cout << "Calling shrink_to_fit" << endl;
-  std::cout << "size: " << (int) myvector.size() << '\n';
-  std::cout << "capacity: " << (int) myvector.capacity() << '\n';
+  cout << "size: " << (int) myvector.size() << '\n';
+  cout << "capacity: " << (int) myvector.capacity() << '\n';
+
+  /*
+  ALGORITHM::copy
+  Copies the elements in the range [first,last) into the range beginning at result.
+
+  The function returns an iterator to the end of the destination range (which points to the element following the last element copied).
+  */
+  cout << "\nUsing COPY algorithm." << endl;
+  int myints1[]={10,20,30,40,50,60,70};
+  vector<int> myvector2 (7);
+
+  copy ( myints1, myints1+7, myvector2.begin() );
+
+  cout << "myvector2 contains:";
+  for (vector<int>::iterator it = myvector2.begin(); it!=myvector2.end(); ++it)
+    cout << ' ' << *it;
+
+  cout <<endl ;
+  
+  /*
+  VECTOR::front and VECTOR::back
+  FRONT:
+    Returns a reference to the first element in the vector.
+    Unlike member vector::begin, which returns an iterator to this same element, 
+    this function returns a direct reference.
+
+  BACK:
+    Returns a reference to the last element in the vector.
+    Unlike member vector::end, which returns an iterator just past this element, 
+    this function returns a direct reference.
+  */
+  cout <<"\nVECTOR::front and VECTOR::back" << endl;
+
+  myvector2.front() -= myvector2.back();
+  cout << "myvector2.front() is now " << myvector2.front() << endl;
+
+  /*
+  VECTOR::insert
+  The vector is extended by inserting new elements before the element at the specified position, 
+  effectively increasing the container size by the number of elements inserted.
+
+  This causes an automatic reallocation of the allocated storage space if -and only if- 
+  the new vector size surpasses the current vector capacity.
+  */
+  cout << "\nVECTOR::INSERT" << endl;
+  int a[] = {501, 502, 503};
+  myvector2.insert(myvector2.begin(), a, a+3);
+
+  cout << "Inserting 3 elements in front of vector";
+  for (auto& x : myvector2)
+    cout << x << " ";
+  cout << endl;
+  /*
+  VECTOR::clear
+  Removes all elements from the vector (which are destroyed), 
+  leaving the container with a size of 0.
+
+  VECTOR::erase
+  Removes from the vector either a single element (position) 
+  or a range of elements ([first,last)).
+  */
+
+  myvector2.clear();
+  myvector2.push_back(100);
+  myvector2.push_back(101);
+  
+  myvector2.erase(myvector2.begin());
+  cout << "\nVector erase and clear." << endl;
+  for (auto& x : myvector2)
+    cout << x << " ";
+  cout << endl;
 
 
 
-  return 0;
+
+ return 0;
 }
