@@ -251,3 +251,63 @@ void modify_vector(vector< int >& v)
 }
 ```
 
+## Pairs
+
+The pair container is a simple container defined in `<utility>` header consisting of two data elements or objects.
+
+- The first element is referenced as ‘first’ and the second element as ‘second’ and the order is fixed (first, second).
+- Pair is used to combine together two values which may be different in type. Pair provides a way to store two ***heterogeneous objects as a single unit***.
+- Pair can be assigned, copied and compared. The array of objects allocated in a map or hash_map are of type ‘pair’ by default in which all the ‘first’ elements are unique keys associated with their ‘second’ value objects.
+- To access the elements, we use variable name followed by dot operator followed by the keyword first or second.
+
+The simplest form would be the following:
+
+```c++
+template< typename T1, typename T2 > struct pair 
+{
+  T1 first;
+  T2 second;
+};
+```
+
+In general `pair<int,int>` is a pair of integer values. 
+
+At a more complex level, `pair<string, pair<int, int> >` is a pair of string and two integers. In the second case, the usage may be like this:
+
+```c++
+pair<string, pair< int,int > > P;
+string s = P.first; // extract string
+int x = P.second.first; // extract first int
+int y = P.second.second; // extract second int
+```
+
+The great advantage of pairs is that they have built-in operations to compare themselves. Pairs are compared first-to-second element. If the first elements are not equal, the result will be based on the comparison of the first elements only; the second elements will be compared only if the first ones are equal. The array (or vector) of pairs can easily be sorted by STL internal functions.
+
+For example, if you want to sort the array of integer points so that they form a polygon, it’s a good idea to put them to the vector< pair<double, pair<int,int> >, where each element of vector is { polar angle, { x, y } }. One call to the STL sorting function will give you the desired order of points.
+
+Pairs are also widely used in associative containers.
+
+### Initialization
+
+We can also initialize a pair.
+Syntax :
+
+```c++
+pair (data_type1, data_type2) Pair_name (value1, value2) ;
+```
+
+Different ways to initialize pair:
+
+```shell
+pair  g1;         //default
+pair  g2(1, 'a');  //initialized,  different data type
+pair  g3(1, 10);   //initialized,  same data type
+pair  g4(g3);    //copy of g3
+```
+
+Another way to initialize a pair is by using the make_pair() function.
+
+```c++
+g2 = make_pair(1, 'a');
+```
+
